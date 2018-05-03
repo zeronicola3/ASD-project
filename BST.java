@@ -9,6 +9,22 @@ public class BST {
         }
     }
 
+
+    public Integer find_Distance(Node source, char n1){
+        if(source == null){
+            return -1;
+        }
+
+        if(source.key > n1){
+            return find_Distance(source.left, n1) + 1;
+        } else if(source.key < n1){ 
+            return find_Distance(source.right, n1) + 1;
+        } else {
+            return 0;
+        }
+    }
+
+
     public Node find_LCA(char n1, char n2){
         return find_LCA(root, n1, n2);
     }
@@ -36,5 +52,19 @@ public class BST {
         // SE current_ancestor è > di uno solo tra n1 o n2,
         // allora current_ancestor è LCA
         return current_ancestor;
+    }
+
+    public static void main(String[] args) {
+        BST a = new BST();
+
+        a.add('g');
+        a.add('p');
+        a.add('s');
+        a.add('r');
+        a.add('t');
+        a.add('t');
+        a.add('s');
+
+        System.out.println(a.find_Distance(a.root, 's'));
     }
 }   
