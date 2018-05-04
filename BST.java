@@ -10,6 +10,14 @@ public class BST {
     }
 
 
+    public Integer distance_between_nodes(char n1, char n2){
+
+        Node source = find_LCA(n1, n2);
+        return find_Distance(source, n1) + find_Distance(source, n2);
+
+    }
+
+
     public Integer find_Distance(Node source, char n1){
         if(source == null){
             return -1;
@@ -58,6 +66,11 @@ public class BST {
         BST a = new BST();
 
         a.add('g');
+        a.add('f');
+        a.add('d');
+        a.add('i');
+        a.add('c');
+        a.add('a');
         a.add('p');
         a.add('s');
         a.add('r');
@@ -65,6 +78,6 @@ public class BST {
         a.add('t');
         a.add('s');
 
-        System.out.println(a.find_Distance(a.root, 's'));
+        System.out.println(a.distance_between_nodes('s', 's'));
     }
 }   
