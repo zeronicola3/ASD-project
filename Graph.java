@@ -32,6 +32,18 @@ public class Graph {
         }
     }
 
+    public int get_edges_number(){
+        int sum = 0;
+        for (int i = 0; i < this.adjList.size(); i++) {
+            sum = sum + this.adjList.get(i).size();
+        }
+        return sum/2;
+    }
+
+    public int get_vertex_number(){
+        return this.labels.size();
+    }
+
     public String toString() {
         return "Graph:" + this.adjList;
     }
@@ -45,7 +57,11 @@ public class Graph {
         a.addVertex('o');
 
         a.addEdge(2, 0);
+        a.addEdge(2, 1);
+        a.addEdge(2, 3);
+        //a.addEdge(3, 1);
 
         a.printGraph();
+
     }
 }
