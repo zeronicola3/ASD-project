@@ -1,6 +1,7 @@
 public class BST {
     private Node root;
 
+    // Funzione che aggiunge un carattere all'albero
     public void add(char key) {
         if (root == null) {
             root = new Node(key);
@@ -9,18 +10,16 @@ public class BST {
         }
     }
 
-
+    // Funzione che restituisce la distanza minima tra due caratteri nell'albero
     public Integer distance_between_nodes(char n1, char n2){
-
         Node source = find_LCA(n1, n2);
         return find_Distance(source, n1) + find_Distance(source, n2);
-
     }
 
-
+    // Funzione che restituisce la distanza di un carattere da una data sorgente
     public Integer find_Distance(Node source, char n1){
         if(source == null){
-            return -1;
+            return null;
         }
 
         if(source.key > n1){
@@ -32,26 +31,41 @@ public class BST {
         }
     }
 
-
+    // Funzione che trova "Last Common Ancestor" tra dine caratteri nell'albero
     public Node find_LCA(char n1, char n2){
         return find_LCA(root, n1, n2);
     }
 
     public Node find_LCA(Node current_ancestor, char n1, char n2){
-
+        
+        // CASI BASE 
+        if(n1 == n2){
+            return null;
+        }
         // SE current_ancestor è nullo
         if(current_ancestor == null){
             return null;
         }
-        // SE n1 o n2 sono uguali a current_ancestor, allora current_ancestor e' il LCA 
-        if((current_ancestor.key == n1) || (current_ancestor.key == n2)){
-            return current_ancestor;
-        }
+        
         // SE n1 e n2 sono entrambi minori di current_ancestor, 
         // allora controllo il sotto-albero sinistro radicato in current_ancestor
         if((current_ancestor.key > n1) && (current_ancestor.key > n2)){
             return find_LCA(current_ancestor.left, n1, n2);
         }
+        
+        // SE n1 o n2 sono uguali a current_ancestor,
+        if(((current_ancestor.key > n1) && (current_ancestor.key == n2)) ||
+           ((current_ancestor.key == n1) && (current_ancestor.key > n2))) {
+            // SE il figlio sinistro di current_ancestor è minore di current_ancestor,
+            // allora current_ancestor è LCA
+            if(current_ancestor.left.key < current_ancestor.key){
+                return current_ancestor;
+            // altrimenti, controllo il sotto-albero sinistro radicato in current_ancestor
+            } else {
+                return find_LCA(current_ancestor.left, n1, n2);
+            }
+        }
+
         // SE n1 e n2 sono entrambi maggiori di current_ancestor, 
         // allora controllo il sotto-albero destro radicato in current_ancestor
         if ((current_ancestor.key < n1) && (current_ancestor.key < n2)) {
@@ -65,19 +79,19 @@ public class BST {
     public static void main(String[] args) {
         BST a = new BST();
 
-        a.add('g');
-        a.add('f');
-        a.add('d');
-        a.add('i');
-        a.add('c');
         a.add('a');
-        a.add('p');
-        a.add('s');
-        a.add('r');
-        a.add('t');
-        a.add('t');
-        a.add('s');
+        a.add('g');
+        a.add('g');
+        a.add('g');
+        a.add('g');
+        a.add('g');
+        a.add('g');
+        a.add('g');
+        a.add('g');
+        a.add('g');
+        a.add('g');
+        a.add('e');
 
-        System.out.println(a.distance_between_nodes('s', 's'));
+        System.out.println(a.distance_between_nodes('g', 'e'));
     }
 }   
