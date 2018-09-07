@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class BST {
     private Node root;
 
@@ -31,7 +34,7 @@ public class BST {
         }
     }
 
-    // Funzione che trova "Last Common Ancestor" tra dine caratteri nell'albero
+    // Funzione che trova "Last Common Ancestor" tra due caratteri nell'albero
     public Node find_LCA(char n1, char n2){
         return find_LCA(root, n1, n2);
     }
@@ -76,6 +79,34 @@ public class BST {
         return current_ancestor;
     }
 
+
+    public ArrayList<Node> get_Leaves(Node node){
+
+        ArrayList<Node> leaves = new ArrayList<Node>();
+
+        if(node.is_Leaf()){
+            leaves.add(node);
+            return leaves;
+        }
+
+        leaves = this.get_Leaves(node.left);
+        
+        //ArrayList<Node> result1 = this.get_Leaves(node.left);
+        /*ArrayList<Node> result2 = this.get_Leaves(node.right);
+
+        if(!result1.isEmpty()){
+            leaves.addAll(result1);
+            System.out.println("left");
+        }
+
+        if(!result2.isEmpty()) {
+            leaves.addAll(result2);
+            System.out.println("right");
+        }
+*/
+        return leaves;
+    }
+
     public static void main(String[] args) {
         BST a = new BST();
 
@@ -92,6 +123,13 @@ public class BST {
         a.add('g');
         a.add('e');
 
-        System.out.println(a.distance_between_nodes('g', 'e'));
+        System.out.println(a.distance_between_nodes('a', 'e'));
+
+        //Node b = new Node("c");
+        //System.out.println(b.isLeaf());*/
+
+        ArrayList<Node> leaves = a.get_Leaves(a.root);
+
+        System.out.println(Arrays.toString(leaves.toArray()));
     }
 }   

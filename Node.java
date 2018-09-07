@@ -5,6 +5,8 @@ public class Node {
 
     public Node(char key){
         this.key = key;
+        this.left = null;
+        this.right = null;
     }
 
     public void add(char key){
@@ -22,5 +24,14 @@ public class Node {
                 right.add(key);
             }
         }
+    }
+
+
+    // Funzione che dato un nodo restutuisce tre se è una foglia, false altrimenti
+    public Boolean is_Leaf() {
+        if ((this.left == null) && (this.right == null)) {
+            return true;
+        }
+        return false;
     }
 }
