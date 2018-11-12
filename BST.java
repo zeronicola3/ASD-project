@@ -80,56 +80,60 @@ public class BST {
     }
 
 
-    public ArrayList<Node> get_Leaves(Node node){
 
-        ArrayList<Node> leaves = new ArrayList<Node>();
+
+
+
+    public ArrayList<Character> get_Leaves(Node node, ArrayList<Character> c){
+
+        if(node == null){
+            return c;
+        }
+
+        System.out.println(c.toString());
 
         if(node.is_Leaf()){
-            leaves.add(node);
-            return leaves;
+            c.add(node.key);
+            return c;
         }
 
-        leaves = this.get_Leaves(node.left);
-        
-        //ArrayList<Node> result1 = this.get_Leaves(node.left);
-        /*ArrayList<Node> result2 = this.get_Leaves(node.right);
+        this.get_Leaves(node.left, c);
+        this.get_Leaves(node.right, c);
 
-        if(!result1.isEmpty()){
-            leaves.addAll(result1);
-            System.out.println("left");
-        }
-
-        if(!result2.isEmpty()) {
-            leaves.addAll(result2);
-            System.out.println("right");
-        }
-*/
-        return leaves;
+        return c;
     }
 
     public static void main(String[] args) {
         BST a = new BST();
 
-        a.add('a');
-        a.add('g');
-        a.add('g');
-        a.add('g');
-        a.add('g');
-        a.add('g');
-        a.add('g');
-        a.add('g');
-        a.add('g');
-        a.add('g');
-        a.add('g');
-        a.add('e');
+        BST a2 = a;
+        a2.add('m');
+        a2.add('e');
+        a2.add('c');
+        a2.add('f');
+        a2.add('h');
+        a2.add('d');
+        a2.add('a');
+        a2.add('g');
+        a2.add('p');
+        a2.add('p');
+        a2.add('p');
+        a2.add('p');
+        a2.add('w');
+        a2.add('t');
+        a2.add('o');
+        a2.add('n');
+        a2.add('u');
+        a2.add('s');
+        a2.add('z');
 
-        System.out.println(a.distance_between_nodes('a', 'e'));
+        System.out.println(a2.distance_between_nodes('a', 'e'));
 
         //Node b = new Node("c");
         //System.out.println(b.isLeaf());*/
 
-        ArrayList<Node> leaves = a.get_Leaves(a.root);
-
-        System.out.println(Arrays.toString(leaves.toArray()));
+        ArrayList<Character> leaves = a.get_Leaves(a.root, new ArrayList<Character>());
+        //System.out.println(a.root.key);
+        System.out.println(leaves.toString());
     }
 }   
