@@ -22,6 +22,13 @@ public class Graph {
         this.adjList.get(j).add(i);
     }
 
+    public void addEdge(Character i, Character j) {
+        int a = this.labels.indexOf(i);
+        int b = this.labels.indexOf(j);
+        this.adjList.get(a).add(b);
+        this.adjList.get(b).add(a);
+    }
+
     public int countVertexNumber() {
         return this.adjList.size();
     }

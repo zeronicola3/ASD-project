@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class BST {
-    private Node root;
+    public Node root;
 
     // Funzione che aggiunge un carattere all'albero
     public void add(char key) {
@@ -89,8 +89,6 @@ public class BST {
         if(node == null){
             return c;
         }
-
-        System.out.println(c.toString());
 
         if(node.is_Leaf()){
             c.add(node.key);

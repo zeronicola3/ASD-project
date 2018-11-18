@@ -22,5 +22,4 @@ class Parser{
             System.out.println(carattere);
         }
     }
-
 }
